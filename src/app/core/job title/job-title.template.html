@@ -1,0 +1,26 @@
+<form class="form-horizontal" [formGroup]="jobTitleForm" role="form">
+    <div class="form-group">
+
+        <div class="col-xs-3">
+            <input type="text" placeholder="Enter a job title" [(ngModel)]="currentJobTitle.Name" name="name" class="form-control"
+                [formControl]="jobTitleForm.controls['name']" maxlength="255" />
+            <div *ngIf="jobTitleForm.controls['name'].hasError('required') && !jobTitleForm.controls['name'].pristine" class="alert alert-danger">Job Title is required.</div>
+        </div>
+
+        <div class="col-xs-1" *ngIf="isInEdit || isInAdd">
+            <input type="button" (click)="save()" [disabled]="!jobTitleForm.valid" value="Save" class="form-control" />
+        </div>
+        <div class="col-xs-1" *ngIf="isInEdit || isInAdd">
+            <input type="button" (click)="cancel()" value="Cancel" class="form-control" />
+        </div>
+        <div class="col-xs-1" *ngIf="!isInEdit && !isInAdd">
+            <input type="button" (click)="edit()" value="Edit" class="form-control" />
+        </div>
+
+        <div class="col-xs-1" *ngIf="!isInEdit && !isInAdd">
+            <input type="button" (click)="delete()" value="Delete" class="form-control" />
+        </div>
+    </div>
+</form>
+
+<delete-confirm message="" (canBeDeleted)="onDelete($event);"></delete-confirm>

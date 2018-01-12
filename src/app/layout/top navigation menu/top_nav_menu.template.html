@@ -1,0 +1,19 @@
+<div class="top_nav">
+  <div class="nav_menu">
+    <nav>
+      <div class="nav toggle" (click)="toggleMenu()">
+        <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+      </div>
+
+      <ul class="nav navbar-nav navbar-right">
+         <li class="nav-item">
+            <span *ngIf="isCoreModuleActive">
+                <login-area (loginClicked)="onLoginClicked($event)"></login-area>
+            </span>    
+         </li>
+      </ul>
+    </nav>
+  </div>
+</div>
+
+<link [href]="secureUrl" rel="stylesheet">

@@ -1,0 +1,69 @@
+<h1>User list</h1>
+
+<div *ngFor="let alert of alerts">
+    <alert [type]="alert.type" [dismissOnTimeout]="alert.timeout">{{ alert.msg }}</alert>
+</div>
+
+<div [ngClass]="{ 'spinner': isLoading }">
+    <form class="form-horizontal" role="form">
+        <div class="form-group">
+            <div class="col-sm-4">
+                <input type="text" class="form-control" placeholder="Search by email" max="5" #searchInput />
+            </div>
+
+            <div class="col-sm-2">
+                <select required class="form-control" [(ngModel)]="filters.isActivated" name="isActivated">
+                <option *ngFor="let item of filters.isActivatedOptions"  value= {{item.id}}>
+                    {{item.value}}
+                </option>
+            </select>
+            </div>
+            <div class="col-sm-2">
+                <ss-multiselect-dropdown [texts]="filters.selectRolesTexts" [options]="filters.rolesList" [(ngModel)]="selectedRoles" (ngModelChange)="onRolesChange($event)"
+                    name="rolesFilter"></ss-multiselect-dropdown>
+            </div>
+
+            <div class="col-sm-1" style="width: 30px; margin-right: 20px;">
+                <i class="fa fa-search fa-2x" aria-hidden="true" (click)="search(searchInput.value, filters)"></i>
+            </div>
+
+            <div class="col-sm-2">
+                <button type="button" class="form-control" (click)="resetFilters()">Reset filters</button>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-xs-2">
+                <label for="ex1">Email</label>
+            </div>
+            <div class="col-xs-2">
+                <label for="ex2">Full Name</label>
+            </div>
+            <div class="col-xs-3">
+                <label for="ex3">Roles</label>
+            </div>
+            <!--<div class="col-xs-2">
+                <label for="ex1">Employee</label>
+            </div>-->
+            <div class="col-xs-3">
+                <label for="ex1">Actions</label>
+            </div>
+        </div>
+
+        <div class="form-group left">
+            <div *ngFor="let user of userList" class="col-sm-15">
+                <user [user]="user" (operationCompleted)="onOperationCompleted($event)"></user>
+            </div>
+
+            <div>
+                <pagination style="margin-top: 10px;" [totalItems]="userTableSettings.totalCount" [itemsPerPage]="userTableSettings.itemsPerPage"
+                    [(ngModel)]="userTableSettings.currentPage" name="paging" (pageChanged)="onPageChanged($event)"></pagination>
+            </div>
+            <div>
+                <div #addUserTarget></div>
+            </div>
+            <div class="col-sm-1">
+                <input type="button" value="Add" class="form-control" [disabled]="isInAdd" (click)=" addRow()" />
+            </div>
+        </div>
+    </form>
+</div>

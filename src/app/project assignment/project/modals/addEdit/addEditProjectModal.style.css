@@ -1,0 +1,8 @@
+input.ng-valid.required, select.ng-valid.required, .ng-valid-message{
+    border-left: 4px solid green;
+}
+
+input.ng-invalid.required, select.ng-invalid.required, .ng-invalid-message{
+    /*, select.ng-valid.ng-pristine.required{*/
+    border-left: 4px solid red;
+}

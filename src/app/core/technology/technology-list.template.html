@@ -1,0 +1,35 @@
+<h1>Technologies</h1>
+
+<div *ngFor="let alert of alerts">
+    <alert [type]="alert.type" [dismissOnTimeout]="alert.timeout">{{ alert.msg }}</alert>
+</div>
+
+<div *ngIf="isTechnologyListEmpty()">
+    No technology was found.
+</div>
+
+<div [ngClass]="{ 'spinner': isLoading }">
+    <div *ngIf="!isTechnologyListEmpty()">
+        <form class="form-horizontal" role="form">
+            <div class="form-group">
+                <div class="col-xs-2">
+                    <label for="ex1">Title</label>
+                </div>
+            </div>
+        </form>
+
+        <div *ngFor="let technology of technologyList" class="col-sm-20">
+            <technology [technology]="technology" 
+                (operationStarted)="onOperationStarted($event)" 
+                (operationCompleted)="onOperationCompleted($event)"
+                (technologyDeleted)="onTechnologyDeleted($event)"></technology>
+        </div>
+    </div>
+
+    <div>
+        <div #addTechnologyTarget></div>
+    </div>
+    <div class="col-sm-1">
+        <input type="button" value="Add" class="form-control" [disabled]="isInAdd" (click)=" addRow()" />
+    </div>
+</div>

@@ -1,0 +1,38 @@
+/* Footer */
+
+footer {
+	/*background: #fff;*/
+	padding: 15px 20px;
+	display: block;
+
+	clear: both;
+    position: relative;
+    /*z-index: 10;*/
+    height: 3em;
+    margin-top: -3em;
+}
+
+.nav-sm footer {
+	margin-left: 70px;
+}
+
+.footer_fixed footer {
+	position: fixed;
+	left: 0px;
+	bottom: 0px;
+	width: 100%;
+}
+
+@media (min-width: 768px) {
+	.footer_fixed footer {
+		margin-left: 0;
+	}
+}
+
+@media (min-width: 768px) {
+	.footer_fixed .nav-sm footer {
+		margin-left: 0;
+	}
+}
+
+/* End - Footer */

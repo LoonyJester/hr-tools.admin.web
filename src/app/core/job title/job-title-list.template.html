@@ -1,0 +1,33 @@
+<h1>Job Titles</h1>
+
+<div *ngFor="let alert of alerts">
+    <alert [type]="alert.type" [dismissOnTimeout]="alert.timeout">{{ alert.msg }}</alert>
+</div>
+
+<div *ngIf="isJobTitleListEmpty()" class="col-sm-20">
+    No job title was found.
+</div>
+
+<div [ngClass]="{ 'spinner': isLoading }">
+    <div *ngIf="!isJobTitleListEmpty()">
+        <form class="form-horizontal" role="form">
+            <div class="form-group">
+                <div class="col-xs-2">
+                    <label for="ex1">Title</label>
+                </div>
+            </div>
+        </form>
+
+        <div *ngFor="let jobTitle of jobTitleList" class="col-sm-20">
+            <job-title [jobTitle]="jobTitle" (operationStarted)="onOperationStarted($event)"
+                 (operationCompleted)="onOperationCompleted($event)" (jobTitleDeleted)="onJobTitleDeleted($event)"></job-title>
+        </div>
+    </div>
+
+    <div>
+        <div #addJobTitleTarget></div>
+    </div>
+    <div class="col-sm-1">
+        <input type="button" value="Add" class="form-control" [disabled]="isInAdd" (click)=" addRow()" />
+    </div>
+</div>

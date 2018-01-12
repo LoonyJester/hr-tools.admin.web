@@ -1,0 +1,81 @@
+<form class="form-horizontal" [formGroup]="moduleConfigForm" role="form">
+    <div class="form-group">
+             
+        <div *ngIf="isCoreModule && !isInAdd" class="col-sm-3">
+            <input type="text" id="name" class="form-control required" [value]="currentModuleConfig.Name"  disabled="true">
+        </div>
+        
+        <div *ngIf="!isCoreModule || (isCoreModule && isInAdd)" class="col-sm-3">
+            <select [disabled]="isModuleConfigDisabled || isModuleStarted" (change)="onModuleNameChanged($event.target.value)" class="form-control required" 
+                    name="name">
+                <option *ngFor="let item of moduleNameList" value= {{item.value}} [selected]="item.selected" [hidden]="item.hidden">
+                    {{item.value}}
+                </option>
+            </select>
+            <div *ngIf="!currentModuleConfig.Name && !moduleConfigForm.controls['name'].pristine" class="alert alert-danger">Module name is required</div>
+        </div>
+
+        <div class="col-sm-2">
+            <i *ngIf="(isInEdit || isInAdd) && !isModuleStarted" class="fa fa-calendar date" aria-hidden="true" (click)="openStartDatePicker(startDatePicker)"></i>
+
+            <div class="datePickerInput">
+                <input [(ngModel)]="currentModuleConfig.StartDate" [formControl]="moduleConfigForm.controls['startDate']" type="text" id="startDate"
+                    [value]="currentModuleConfig.StartDate | date" maxlength="100" class="form-control" readonly='true' [ngClass]="{'ng-valid-message': currentModuleConfig.StartDate, 'ng-invalid-message': !currentModuleConfig.StartDate}"
+                    (input)="setEndDateMinDate()">
+            </div>
+
+            <div *ngIf="isStartDatePickerOpened" class="datePicker" style="position: absolute; z-index:1;">
+                <datepicker #startDatePicker [(ngModel)]="currentModuleConfig.StartDate" [minDate]="datePickersValidationRules.startDate.minDate"
+                    [maxDate]="datePickersValidationRules.startDate.maxDate" [showWeeks]="true" id="startDatePicker" (mouseleave)="openStartDatePicker(startDatePicker)"
+                    name="startDatePicker" [ngModelOptions]="{standalone: true}"></datepicker>
+            </div>
+        </div>
+
+        <div class="col-sm-2">
+            <div *ngIf="!isCoreModule && !areAllModulesStopped">
+                <i *ngIf="isInEdit || isInAdd" class="fa fa-times date" aria-hidden="true" (click)="clearEndDatePicker(endDatePicker)" ></i>
+                <i *ngIf="isInEdit || isInAdd" class="fa fa-calendar date" aria-hidden="true" (click)="openEndDatePicker(endDatePicker)"></i>                
+
+                <div class="datePickerInput">
+                    <input [(ngModel)]="currentModuleConfig.EndDate" [formControl]="moduleConfigForm.controls['endDate']" type="text" id="endDate"
+                        [value]="currentModuleConfig.EndDate | date" maxlength="100" class="form-control" readonly='true' (input)="setStartDateMaxDate()">
+                </div>
+
+                <span *ngIf="isEndDatePickerOpened" class="datePicker" style="position: absolute; z-index:1;">
+                    <datepicker #endDatePicker [(ngModel)]="currentModuleConfig.EndDate" 
+                        [minDate]="datePickersValidationRules.endDate.minDate" 
+                        [maxDate]="datePickersValidationRules.endDate.maxDate"
+                        [showWeeks]="true" 
+                        (mouseleave)="openEndDatePicker(endDatePicker)"
+                        id="endDatePicker" name="endDatePicker"
+                        [ngModelOptions]="{standalone: true}"
+                        ></datepicker>
+                </span>
+            </div>
+            <div *ngIf="areAllModulesStopped">      
+                <div class="datePickerInput">
+                    <input [(ngModel)]="currentModuleConfig.EndDate" [formControl]="moduleConfigForm.controls['endDate']" type="text" id="endDate"
+                        [value]="currentModuleConfig.EndDate | date" maxlength="100" class="form-control" readonly='true' (input)="setStartDateMaxDate()">
+                </div>
+            </div>
+        </div>
+        
+        <div *ngIf="!areAllModulesStopped">
+            <div class="col-xs-1" *ngIf="isInEdit || isInAdd">
+                <input type="button" (click)="save()" [disabled]="!currentModuleConfig.Name || !currentModuleConfig.StartDate" value="Save" class="form-control" />
+            </div>
+            <div class="col-xs-1" *ngIf="isInEdit || isInAdd">
+                <input type="button" (click)="cancel()" value="Cancel" class="form-control" />
+            </div>
+            <div class="col-xs-1" *ngIf="!isInEdit && !isInAdd && canBeEditted && !isCoreModule">
+                <input type="button" (click)="edit()" value="Edit" class="form-control" />
+            </div>
+
+            <div class="col-xs-1" *ngIf="!isInEdit && !isInAdd && canBeStopped">
+                <input type="button" (click)="stop()" value="Stop" class="form-control" />
+            </div>
+        </div>
+    </div>
+</form>
+
+<stop-confirm message="You are sure you want to stop a {{currentModuleConfig.Name}} module?" (canBeStopped)="onStop($event);"></stop-confirm>

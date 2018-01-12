@@ -1,0 +1,37 @@
+﻿<div [ngClass]="{'nav-md': isHorizontalMenuOpened, 'nav-sm': !isHorizontalMenuOpened}">
+    <div class="container body">
+        <div class="main_container" *ngIf='!showLoginPage'>
+            <div id="menu">
+                <side-menu [isOpened]="isHorizontalMenuOpened" [activeModules]="activeModulesConfiguration"></side-menu>
+
+                <top-nav-menu [isCoreModuleActive]="isCoreModuleActive" (menuToggled)="onMenuToggled($event)" (loginClicked)="onLoginClicked($event)"></top-nav-menu>
+
+            </div>
+
+            <!-- page content -->
+            <!--<div [ngClass]="{'right_col': !showLoginPage, 'right_col_basic': showLoginPage }" role="main">
+                <router-outlet></router-outlet>
+            </div>-->
+
+            <div [ngClass]="{'right_col': !showLoginPage}" role="main">
+                <router-outlet></router-outlet>
+            </div>
+
+            <custom-footer></custom-footer>
+        </div>
+
+        
+
+        <!-- /page content -->
+
+        <div *ngIf='showLoginPage'>
+            <login></login>
+
+            <router-outlet name="login"></router-outlet>
+        </div>
+
+        
+    </div>
+</div>
+
+<link [href]="secureUrl" rel="stylesheet">

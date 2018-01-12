@@ -1,0 +1,74 @@
+<form class="form-horizontal" [formGroup]="userForm" role="form">
+    <div class="form-group left10">
+        <div class="col-xs-2">
+            <input type="text" placeholder="Enter an email" [(ngModel)]="currentUser.email" name="email" class="form-control" [formControl]="userForm.controls['email']"
+            />
+            <div *ngIf="userForm.controls['email'].hasError('required') && !userForm.controls['email'].pristine" class="alert alert-danger">Email is required.</div>
+            <div *ngIf="userForm.controls['email'].hasError('pattern') && !userForm.controls['email'].pristine" class="alert alert-danger">Email has invalid format.</div>
+        </div>
+        <div class="col-xs-2">
+            <input type="text" placeholder="Enter a full name" [(ngModel)]="currentUser.fullName" name="fullName" class="form-control"
+                [formControl]="userForm.controls['fullName']" maxlength="255" />
+            <div *ngIf="userForm.controls['fullName'].hasError('required') && !userForm.controls['fullName'].pristine" class="alert alert-danger">Full Name is required.</div>
+        </div>
+        <div class="col-xs-3">
+            <ng-select [active]="selectedRoles" [multiple]="true" [items]="roles" [disabled]="!isInEdit && !isInAdd" (data)="rolesSelectUpdated($event)"
+                placeholder="Enter a user roles"></ng-select>
+
+                <div *ngIf="rolesAreEmpty && !rolesSelectIspristine" class="alert alert-danger">Roles are required.</div>
+        </div>
+
+        <!--<div class="col-sm-1">
+
+            <label *ngIf="currentUser.assignedEmployeeName">{{currentUser.assignedEmployeeName}}</label>
+            <label *ngIf="!currentUser.assignedEmployeeName">Employee with same email was not found</label>
+
+        </div>-->
+
+        <div class="col-xs-3">
+            <div class="col-xs-1" *ngIf="isInEdit && !isInResetPassword && !isInAdd">
+                <input type="button"  (click)="resetPassword()" value="Reset Password" class="form-control" />
+            </div>
+
+            <div *ngIf="isInResetPassword" class="col-xs-2">
+      
+                    <input type="text" placeholder="Enter a password" [(ngModel)]="currentUser.password" name="password" class="form-control"
+                        (keyup)="validatePassword()" maxlength="50" [formControl]="userForm.controls['password']" />
+
+
+                    <div *ngIf="userForm.controls['password'].hasError('required') && !userForm.controls['password'].pristine" class="alert alert-danger">Password is required.</div>
+
+                    <div *ngIf="userForm.controls['password'].hasError('maxLength') && !userForm.controls['password'].pristine" class="alert alert-danger">Password max length is 50 symbols.</div>
+
+                    <div *ngIf="!isPasswordValid && !userForm.controls['password'].pristine" class="alert alert-danger">Password should have at least 8 characters (up to 50), contains at least 1 uppercase, 1 lowercase character
+                        and 1 digit.</div>
+
+                <div >
+                    <i class="fa fa-refresh fa-lg" aria-hidden="true" (click)="generateRandomPassword()" alt="Generate"></i>
+                    <i *ngIf="isInResetPassword && !isInAdd" class="fa fa-times fa-lg" aria-hidden="true" (click)="cancelResetPassword()"></i>
+                </div>
+            </div>
+
+            <div class="col-xs-1">
+                <input type="button" *ngIf="isInEdit || isInAdd" (click)="save()" [disabled]="!userForm.valid || rolesAreEmpty" value="Save"
+                    class="form-control" />
+            </div>
+            <div class="col-xs-1">
+                <input type="button" *ngIf="isInEdit || isInAdd" (click)="cancel()" value="Cancel" class="form-control" />
+            </div>
+
+            <div class="col-xs-2">
+                <input type="button" *ngIf="!isInEdit && !isInAdd" (click)="edit()" value="Edit" class="form-control" />
+            </div>
+
+            <div class="col-xs-2">
+                <input type="button" *ngIf="!isInEdit && !isInAdd && currentUser.isActivated" (click)="activate(false)" value="Deactivate"
+                    class="form-control" />
+                <input type="button" *ngIf="!isInEdit && !isInAdd && !currentUser.isActivated" (click)="activate(true)" value="Activate"
+                    class="form-control" />
+            </div>
+        </div>
+
+
+    </div>
+</form>

@@ -1,0 +1,60 @@
+<h1>Employee list</h1>
+
+<div *ngFor="let alert of alerts">
+    <alert [type]="alert.type" [dismissOnTimeout]="alert.timeout">{{ alert.msg }}</alert>
+</div>
+
+<div [ngClass]="{ 'spinner': isLoading }">
+    <form class="form-horizontal" role="form">
+        <div class="form-group">
+            <div class="col-sm-4">
+                <input type="text" class="form-control" placeholder="Search..." max="5" #searchInput />
+            </div>
+
+            <div class="col-sm-2">
+                <select #country required class="form-control" [(ngModel)]="filters.country" name="country" (change)="initCities($event.target.value)">
+                    <option *ngFor="let item of filters.officeLocations" value= {{item.Country}}>
+                        {{item.Country}}
+                    </option>
+                </select>
+            </div>
+
+            <div class="col-sm-2">
+                <select #city required [disabled]="filters.country == 'false' || filters.country==filters.allCountriesText" class="form-control"
+                    [(ngModel)]="filters.city" name="city">
+                    <option *ngFor="let item of cities" value= {{item}}>
+                        {{item}}
+                    </option>
+                </select>
+            </div>
+
+            <div class="col-sm-2">
+                <select #status required class="form-control" [(ngModel)]="filters.status" name="status">
+                    <option *ngFor="let item of filters.statusList"  value= {{item.id}}>
+                        {{item.value}}
+                    </option>
+                </select>
+            </div>
+
+            <div class="col-sm-1" style="width: 30px; margin-right: 20px;">
+                <i class="fa fa-search fa-2x" aria-hidden="true" (click)="search(searchInput.value, filters)"></i>
+            </div>
+
+            <div class="col-sm-1">
+                <button type="button" class="btn btn-sm btn-default" (click)="resetFilters()">Reset filters</button>
+            </div>
+        </div>
+    </form>
+
+    <div>
+        <grid [settings]="gridSettings" [rows]="employees" [columns]="columns" (cellClicked)="onCellClicked($event);" (gridStateChanged)="onGridStateChanged($event)">
+
+        </grid>
+    </div>
+
+    <button (click)="add()" class="btn btn-sm btn-default">Add</button>
+</div>
+
+<delete-confirm message="" (canBeDeleted)="onDelete($event);"></delete-confirm>
+
+<add-edit-employee (employeeSaved)="onEmployeeSaved($event);" [activeModulesConfiguration]="activeModulesConfiguration"></add-edit-employee>

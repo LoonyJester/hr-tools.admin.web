@@ -1,0 +1,442 @@
+<div bsModal #addModal="bs-modal"  class="modal fade" tabindex="-1" role="dialog"  [config]="{backdrop: 'static'}"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" aria-label="Close" (click)="addEditForm.reset(); addModal.hide();">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">{{actionName}} Employee</h4>
+            </div>
+            
+            <div class="modal-body">
+                <form [formGroup]="addEditForm"  class="form-horizontal">
+                    <div class="form-group">
+                        <label for="fullName" class="control-label col-sm-3">Full Name:</label>
+                        <div class="col-sm-9">
+                            <input type="text" [formControl]="addEditForm.controls['fullName']" id="fullName" 
+                                maxlength="250" class="form-control required" [(ngModel)]="employee.fullName"
+                                placeholder="Enter a full name">
+                            <div *ngIf="addEditForm.controls['fullName'].hasError('required') && !addEditForm.controls['fullName'].pristine" 
+                                class="alert alert-danger">Full Name is required.</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="fullNameCyrillic" class="control-label col-sm-3">Full Name (Cyrillic):</label>
+                        <div class="col-sm-9">
+                            <input type="text" id="fullNameCyrillic" [formControl]="addEditForm.controls['fullNameCyrillic']"
+                                [(ngModel)]="employee.fullNameCyrillic" maxlength="250" placeholder="Enter a full name (cyrillic)"
+                                class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="patronymicCyrillic" class="control-label col-sm-3">Patronymic (Cyrillic):</label>
+                        <div class="col-sm-9">
+                            <input type="text" id="patronymicCyrillic" [formControl]="addEditForm.controls['patronymicCyrillic']"
+                                [(ngModel)]="employee.patronymicCyrillic" maxlength="250" placeholder="Enter a patronymic (cyrillic)"
+                                class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="jobTitle" class="control-label col-sm-3">Job Title:</label>
+                        <div class="col-sm-9">
+                            <input type="text" id="jobTitle" [(ngModel)]="employee.jobTitle" maxlength="250"
+                                [formControl]="addEditForm.controls['jobTitle']" class="form-control required"
+                                placeholder="Enter a job title">
+                             
+                            <div *ngIf="addEditForm.controls['jobTitle'].hasError('required') && !addEditForm.controls['jobTitle'].pristine" 
+                                class="alert alert-danger">Job Title is required.</div>
+                        </div> 
+                    </div>
+                    
+                     <div class="form-group"> 
+                        <label for="technology" class="control-label col-sm-3">Technology:</label>
+                        <div class="col-sm-9">
+                            <ng2-completer [matchClass]="form-control" [formControl]="addEditForm.controls['technology']" id="technology"
+                                [(ngModel)]="employee.technology" [dataService]="technologiesAutoCompleteDataService" [minSearchLength]="0"></ng2-completer>                      
+                        </div>
+                    </div>
+
+                    <div class="form-group" *ngIf="!isPAModuleActive()">
+                        <label for="projectName" class="control-label col-sm-3">Project Name:</label>
+                        <div class="col-sm-9">
+                            <input type="text" id="projectName" [(ngModel)]="employee.projectName"
+                                maxlength="250" [formControl]="addEditForm.controls['projectName']" 
+                                class="form-control" placeholder="Enter a project name">                            
+                        </div>
+                    </div>
+
+                    <div class="form-group" *ngIf="!isPAModuleActive()">
+                        <label for="projectName" class="control-label col-sm-3">Project Name:</label>
+                        <div class="col-sm-9">
+                            PA is active!                         
+                        </div>                        
+                    </div>
+
+                    <div class="form-group">
+                        <label for="departmentName" class="control-label col-sm-3">Department Name:</label>
+                        <div class="col-sm-9">
+                            <input type="text" id="departmentName" [(ngModel)]="employee.departmentName"
+                                maxlength="250" [formControl]="addEditForm.controls['departmentName']" 
+                                class="form-control required" placeholder="Enter a department name">
+                            <div *ngIf="addEditForm.controls['departmentName'].hasError('required') && !addEditForm.controls['departmentName'].pristine" class="alert alert-danger">Department Name is required</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="officeLocation" class="control-label col-sm-3">Office Location:</label>
+    
+                        <div class="col-sm-3">
+                            
+                            <select #country class="form-control required" [(ngModel)]="selectedCountry"  
+                                 [formControl]="addEditForm.controls['country']">
+                                <option *ngFor="let item of officeLocations" value= {{item.Country}}>
+                                    {{item.Country}}
+                                </option>
+                            </select>
+                            <div *ngIf="!selectedCountry && !addEditForm.controls['country'].pristine" class="alert alert-danger">Country is required</div>
+                        </div>
+                        
+                        <div class="col-sm-3">
+                            <select #city class="form-control required" [(ngModel)]="selectedCity"  
+                                [formControl]="addEditForm.controls['city']" name="city"
+                                (change)="onCityChanged()" >
+                                <option *ngFor="let item of getCities(selectedCountry)" value= {{item}}>
+                                    {{item}}
+                                </option>
+                            </select>
+                            <div *ngIf="selectedCountry && !selectedCity && !addEditForm.controls['city'].pristine" class="alert alert-danger">City is required</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="companyEmail" class="control-label col-sm-3">Company Email:</label>
+                        <div class="col-sm-9">
+                            <input type="text" id="companyEmail" [(ngModel)]="employee.companyEmail" 
+                                maxlength="150" [formControl]="addEditForm.controls['companyEmail']"
+                                
+                                class="form-control required" placeholder="Enter a company email">
+                            <div *ngIf="addEditForm.controls['companyEmail'].hasError('required') && !addEditForm.controls['companyEmail'].pristine" class="alert alert-danger">Company Email is required</div>
+                            <div *ngIf="addEditForm.controls['companyEmail'].hasError('pattern') && !addEditForm.controls['companyEmail'].pristine" class="alert alert-danger">Company Email is not valid</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="personalEmail" class="control-label col-sm-3">Personal Email:</label>
+                        <div class="col-sm-9">
+                            <input type="text" id="personalEmail" [(ngModel)]="employee.personalEmail" 
+                                maxlength="150" [formControl]="addEditForm.controls['personalEmail']"
+                                class="form-control" placeholder="Enter a personal email"
+                                pattern='^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$' >
+                            <div *ngIf="addEditForm.controls['personalEmail'].hasError('pattern') && !addEditForm.controls['personalEmail'].pristine" class="alert alert-danger">Personal Email is not valid</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="messengerName" class="control-label col-sm-3">Messenger:</label>
+                        <div class="col-sm-4">
+                            <ng2-completer #messengerName id="messengerName" name="messengerName" [formControl]="addEditForm.controls['messengerName']" 
+                                [(ngModel)]="employee.messengerName" [dataService]="messengersAutoCompleteDataService" [minSearchLength]="0"
+                                (input)="disableControl(messengerName.value, 'messengerLogin')"></ng2-completer>
+                        </div>
+                        <div class="col-sm-5">
+                            <input type="text" id="messengerLogin" name="messengerLogin" [(ngModel)]="employee.messengerLogin" maxlength="150"
+                                class="form-control" [formControl]="addEditForm.controls['messengerLogin']"                                
+                                placeholder="Enter a login in the messenger">
+                        </div>
+                    </div>
+
+                     <div class="form-group">
+                        <label for="mobileNumber" class="control-label col-sm-3">Mobile Number:</label>
+                        <div class="col-sm-9">
+                            <input type="text" id="mobileNumber" [(ngModel)]="employee.mobileNumber" 
+                                maxlength="20" [formControl]="addEditForm.controls['mobileNumber']" 
+                                class="form-control" placeholder="Enter a mobile number"
+                                [textMask]="{mask: phoneMask}">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="additionalMobileNumber" class="control-label col-sm-3">Additional Number:</label>
+                        <div class="col-sm-9">
+                            <input type="text" id="additionalMobileNumber" [(ngModel)]="employee.additionalMobileNumber" 
+                                maxlength="20" [formControl]="addEditForm.controls['additionalMobileNumber']" 
+                                class="form-control" placeholder="Enter an additional number"
+                                [textMask]="{mask: phoneMask}">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="birthday" class="control-label col-sm-3">Birthday:</label>
+                        <div class="col-sm-5">
+                                <i class="fa fa-calendar date"  aria-hidden="true"
+                                    (click)="openBirthdayPicker(birthdayPicker)" ></i>
+                                <div class="datePickerInput">
+                                    <input [(ngModel)]="employee.birthday" type="text" id="birthday" [value]="employee.birthday | date"
+                                         maxlength="100" class="form-control"
+                                         readonly='true' [formControl]="addEditForm.controls['birthday']">
+                                          <!--(mouseover)="openBirthdayPicker(birthdayPicker)" >-->
+                                </div>
+                                  
+
+                             <div *ngIf="isBirthdayPickerOpened" class="datePicker" style="position: absolute; z-index:1;">
+                                <datepicker #birthdayPicker
+                                    [(ngModel)]="employee.birthday"
+                                    [minDate]="datePickersValidationRules.birthday.minDate"
+                                    [maxDate]="datePickersValidationRules.birthday.maxDate"
+                                    [showWeeks]="true" id="birthdayPicker"                                     
+                                    (mouseleave)="openBirthdayPicker(birthdayPicker)"
+                                    [ngModelOptions]="{standalone: true}"></datepicker>                                  
+                              
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-sm-3">Status:</label>
+                        <div class="col-sm-3">
+                            <select #s [formControl]="addEditForm.controls['status']" class="form-control required" 
+                                [(ngModel)]="selectedStatus" (change)="setStatus(s.value)" name="status">
+                                <option *ngFor="let item of statuses" value= {{item.id}}>
+                                    {{item.value}}
+                                </option>
+                            </select>
+                            <div *ngIf="!selectedStatus && !addEditForm.controls['status'].pristine" class="alert alert-danger">Status is required</div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="startDate" class="control-label col-sm-3">Start Date:</label>
+                        <div class="col-sm-5">
+                                <i class="fa fa-calendar date" aria-hidden="true" (click)="openStartDatePicker(startDatePicker)"></i>
+                                <div class="datePickerInput">
+                                    <input [(ngModel)]="employee.startDate" 
+                                        [formControl]="addEditForm.controls['startDate']" type="text" id="startDate"
+                                        [value]="employee.startDate | date" maxlength="100"
+                                        class="form-control" readonly='true'
+                                        [ngClass]="{'ng-valid-message': employee.startDate, 'ng-invalid-message': !employee.startDate}"
+                                        (input)="setTerminationDateMinDate()">
+                                </div>
+
+                                <div *ngIf="isStartDatePickerOpened" class="datePicker" style="position: absolute; z-index:1;">
+                                    <datepicker #startDatePicker [(ngModel)]="employee.startDate" [minDate]="datePickersValidationRules.startDate.minDate"
+                                        [maxDate]="datePickersValidationRules.startDate.maxDate" [showWeeks]="true" id="startDatePicker"
+                                        (mouseleave)="openStartDatePicker(startDatePicker)" name="startDatePicker"
+                                        [ngModelOptions]="{standalone: true}"></datepicker>
+                                </div>
+                            </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="terminationDate" class="control-label col-sm-3">Termination Date:</label>
+                        <div class="col-sm-5">
+                                <i class="fa fa-calendar date"  aria-hidden="true"
+                                    (click)="openTerminationDatePicker(terminationDatePicker)" ></i>
+                                <div class="datePickerInput">
+                                    <input [(ngModel)]="employee.terminationDate" 
+                                        [formControl]="addEditForm.controls['terminationDate']" type="text" id="terminationDate" 
+                                        [value]="employee.terminationDate | date"
+                                        maxlength="100" class="form-control"
+                                        readonly='true' (input)="setStartDateMaxDate()" >
+                                        <!--(mouseenter)="openTerminationDatePicker(terminationDatePicker)">-->
+                                </div>
+
+                             <span *ngIf="isTerminationDatePickerOpened" class="datePicker" style="position: absolute; z-index:1;">
+                                <datepicker #terminationDatePicker [(ngModel)]="employee.terminationDate" 
+                                    [minDate]="datePickersValidationRules.terminationDate.minDate" 
+                                    [maxDate]="datePickersValidationRules.terminationDate.maxDate"
+                                    [showWeeks]="true" 
+                                    (mouseleave)="openTerminationDatePicker(terminationDatePicker)"
+                                    id="terminationDatePicker" name="terminationDatePicker"
+                                    [ngModelOptions]="{standalone: true}"
+                                    ></datepicker>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="daysSkipped" class="control-label col-sm-3">Days Skipped:</label>
+                        <div class="col-sm-2">
+                            <input [formControl]="addEditForm.controls['daysSkipped']" type="number" id="daysSkipped" 
+                                [(ngModel)]="employee.daysSkipped" 
+                                maxlength="5" min="0" class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="bioUrl" class="control-label col-sm-3">Bio:</label>
+                        <div class="col-sm-9">    
+                            <div>
+                                <div>
+                                   <div class="file-upload">
+                                        <input type="file" ng2FileSelect [uploader]="uploaderBio" id="bio" name="bio" accept=".doc, .docx, ."
+                                             [disabled]="this.uploaderBio.queue.length > 0"
+                                             (change)="validateBioFile($event)" />
+                                    </div>
+                                    <div *ngIf="bioFileErrorMessage != ''" [ngClass]="{fade: bioFileErrorMessage == '', 'alert-danger': true, 'alert-success': false}"  
+                                        class="alert">
+                                        {{bioFileErrorMessage}}
+                                    </div>
+                                </div>
+
+                               <table class="table">
+                                    <thead>
+                                    <tr>
+                                            <th width="50%">Name</th>
+                                            <th *ngIf="uploaderBio.isHTML5">Size</th>
+                                            <th>Progress</th>
+                                            <th>Status</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr *ngFor="let item of uploaderBio.queue">
+                                        <td><strong>{{item.file.name}}</strong></td>
+                                        <td *ngIf="uploaderBio.isHTML5" nowrap>0.00 MB</td>
+                                        <td>
+                                            <div>
+                                                <div>
+                                                    <div class="progress" style="">
+                                                        <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': uploaderBio.progress + '%' }"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="text-center">
+                                            <span *ngIf="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span>
+                                            <span *ngIf="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span>
+                                            <span *ngIf="item.isError"><i class="glyphicon glyphicon-remove"></i></span>
+                                        </td>
+                                        <td nowrap>
+                                            <button type="button" class="btn btn-success btn-xs"
+                                                    (click)="item.upload();" [disabled]="item.isReady || item.isUploading || item.isSuccess">
+                                                <span class="glyphicon glyphicon-upload"></span> Upload
+                                            </button>
+                                            <button type="button" class="btn btn-warning btn-xs" (click)="item.cancel()" [disabled]="!item.isUploading">
+                                                <span class="glyphicon glyphicon-ban-circle"></span> Cancel
+                                            </button>
+                                            <button type="button" class="btn btn-danger btn-xs" (click)="deleteBio(item)">
+                                                <span class="glyphicon glyphicon-trash"></span> Remove
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="photo" class="control-label col-sm-3">Photo:</label>
+                        <div class="col-sm-9">
+
+                            <div>
+                                <div>
+                                   <div class="file-upload">
+                                        <input type="file" ng2FileSelect [uploader]="uploaderPhoto" id="photo" name="photo" accept="image/jpeg,image/png,image/jpg"
+                                             [disabled]="this.uploaderPhoto.queue.length > 0"
+                                             (change)="validatePhotoFile($event); getResizedFiles(input);" #input/>
+
+                                             <div *ngFor="let fileSrc of fileToPreviewSorces; let i = index">  
+                                                <img [attr.src]='fileSrc' alt=""/>
+                                            </div>
+                                    </div>
+                                    
+                                    <div *ngIf="photoFileErrorMessage != ''" [ngClass]="{fade: photoFileErrorMessage == '', 'alert-danger': true, 'alert-success': false}"  
+                                        class="alert">
+                                        {{photoFileErrorMessage}}
+                                    </div>
+                                </div>
+
+
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th width="50%">Name</th>
+                                            <th *ngIf="uploaderPhoto.isHTML5">Size</th>
+                                            <th>Progress</th>
+                                            <th>Status</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let item of uploaderPhoto.queue">
+                                            <td><strong>{{item.file.name}}</strong></td>
+                                            <td *ngIf="uploaderPhoto.isHTML5" nowrap>0.00 MB</td>
+                                            <td>
+                                                <div>
+                                                    <div>
+                                                        <div class="progress" style="">
+                                                            <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': uploaderPhoto.progress + '%' }"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="text-center">
+                                                <span *ngIf="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span>
+                                                <span *ngIf="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span>
+                                                <span *ngIf="item.isError"><i class="glyphicon glyphicon-remove"></i></span>
+                                            </td>
+                                            <td nowrap>
+                                                <button type="button" class="btn btn-success btn-xs"
+                                                        (click)="item.upload();" [disabled]="item.isReady || item.isUploading || item.isSuccess">
+                                                    <span class="glyphicon glyphicon-upload"></span> Upload
+                                                </button>
+                                                <button type="button" class="btn btn-warning btn-xs" (click)="item.cancel()" [disabled]="!item.isUploading">
+                                                    <span class="glyphicon glyphicon-ban-circle"></span> Cancel
+                                                </button>
+                                                <button type="button" class="btn btn-danger btn-xs" (click)="deletePhoto(item)">
+                                                    <span class="glyphicon glyphicon-trash"></span> Remove
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="notes" class="control-label col-sm-3">Notes:</label>
+                        <div class="col-sm-9">
+                            <textarea [formControl]="addEditForm.controls['notes']" type="text" id="notes" 
+                                name="notes" [(ngModel)]="employee.notes" 
+                                maxlength="1000" class="form-control" rows="4"
+                                placeholder="Enter a notes"></textarea>
+                        </div>
+                    </div>
+
+                    <div>
+                        <button class="btn btn-sm btn-default" (click)="save(addEditForm)" type="submit" [disabled]="!addEditForm.valid || !employee.startDate">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<style>
+    .my-drop-zone {
+        border: dotted 3px lightgray;
+    }
+    
+    .nv-file-over {
+        border: dotted 3px red;
+    }
+    /* Default class applied to drop zones on over */
+    
+    .another-file-over-class {
+        border: dotted 3px green;
+    }
+    
+    html,
+    body {
+        height: 100%;
+    }
+</style>

@@ -1,0 +1,29 @@
+<h1>Global Modules Configuration</h1>
+
+<div *ngFor="let alert of alerts" style="margin-bottom: 20px;">
+    <alert [type]="alert.type" [dismissOnTimeout]="alert.timeout">{{ alert.msg }}</alert>
+</div>
+
+<div class="col-sm-2" style="margin-top: 20px;">
+    <select #country required class="form-control" [(ngModel)]="companyName" name="companyName">
+        <option *ngFor="let company of companyList" value= {{company.Value}}>
+            {{company.Name}}
+        </option>
+    </select>
+</div>
+
+<br/>
+<br/>
+<br/>
+<br/>
+
+<modules-config-list [companyName]="companyName" (coreModuleIsStopped)="onCoreModuleIsStopped($event)"></modules-config-list>
+
+<br/>
+<br/>
+
+<div class="col-sm-1">
+    <input type="button" [disabled]="areAllModulesStopped" (click)="stopAll()" value="Stop All" class="form-control">
+</div>
+
+<stop-confirm message="You are sure you want to stop all modules of a {{getCompanyDisplayName()}} company?" (canBeStopped)="onStopAll($event);" ></stop-confirm>

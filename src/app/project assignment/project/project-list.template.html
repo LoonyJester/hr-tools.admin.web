@@ -1,0 +1,45 @@
+<h1>Projects</h1>
+
+<div *ngFor="let alert of alerts">
+    <alert [type]="alert.type" [dismissOnTimeout]="alert.timeout">{{ alert.msg }}</alert>
+</div>
+
+<div [ngClass]="{ 'spinner': isLoading }">
+    <form class="form-horizontal" role="form">
+        <div class="form-group">
+            <div class="col-sm-4">
+                <input type="text" class="form-control" placeholder="Search..." max="5" #searchInput />
+            </div>
+
+            <div class="col-sm-1">
+                <input type="checkbox" name="showOld" [(ngModel)]="gridSettings.showOld"> Show Old
+            </div>
+
+            <div class="col-sm-2">
+                <input type="checkbox" name="showDeactivated" [(ngModel)]="gridSettings.showDeactivated"> Show Deactivated
+            </div>
+
+            <div class="col-sm-1">
+                <i class="fa fa-search fa-2x" aria-hidden="true" (click)="search(searchInput.value, filters)"></i>
+            </div>
+        </div>
+    </form>
+
+    <div class="spinner-container1">
+        <grid [settings]="gridSettings" [rows]="projects" [columns]="columns" (cellClicked)="onCellClicked($event);" (gridStateChanged)="onGridStateChanged($event)">
+
+        </grid>
+    </div>
+
+    <button (click)="add()" class="btn btn-sm btn-default">Add</button>
+</div>
+
+<delete-confirm message="" (canBeDeleted)="onDelete($event);"></delete-confirm>
+
+<add-edit-project (projectSaved)="onSaved($event);"></add-edit-project>
+
+<style>
+    .rotating-plane-spinner {
+        background-color: rgba(127, 127, 127, 0.5);
+    }
+</style>

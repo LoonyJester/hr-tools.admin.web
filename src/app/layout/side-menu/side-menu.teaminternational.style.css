@@ -1,0 +1,40 @@
+.left_col {
+	background: #2A3F54!important;
+}
+
+.nav.side-menu > li.active > a {
+	text-shadow: rgba(0, 0, 0, 0.25) 0 -1px 0;
+	background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #5b6479), color-stop(100%, #4c5566)), #686e78;
+	background: -webkit-linear-gradient(#334556, #2C4257), #2A3F54;
+	background: -moz-linear-gradient(#334556, #2C4257), #2A3F54;
+	background: -o-linear-gradient(#334556, #2C4257), #2A3F54;
+	background: linear-gradient(#334556, #2C4257), #2A3F54;
+	-webkit-box-shadow: rgba(0, 0, 0, 0.25) 0 1px 0, inset rgba(255, 255, 255, 0.16) 0 1px 0;
+	-moz-box-shadow: rgba(0, 0, 0, 0.25) 0 1px 0, inset rgba(255, 255, 255, 0.16) 0 1px 0;
+	box-shadow: rgba(0, 0, 0, 0.25) 0 1px 0, inset rgba(255, 255, 255, 0.16) 0 1px 0;
+}
+
+.nav-sm .nav.child_menu li.active,
+.nav-sm .nav.side-menu li.active-sm {
+	border-right: 5px solid #1ABB9C;
+}
+
+.nav.side-menu > li.current-page, .nav.side-menu > li.active {
+	border-right: 5px solid #1ABB9C;
+}
+
+/*Footer*/
+
+.sidebar-footer {
+	background: #2A3F54;
+}
+
+.sidebar-footer a {
+	background: #172D44;
+}
+
+.sidebar-footer a:hover {
+	background: #425567;
+}
+
+/*End - footer*/

@@ -1,0 +1,48 @@
+<h1 *ngIf="!isGlobalConfig">Modules</h1>
+
+<div *ngFor="let alert of alerts">
+    <alert [type]="alert.type" [dismissOnTimeout]="alert.timeout">{{ alert.msg }}</alert>
+</div>
+
+<div class="row">
+    <div class="col-sm-1">
+        <input #s type="checkbox" name="showOld" (click)="showOldModules(s.checked)"> Show Old
+    </div>
+</div>
+
+<br/>
+
+<div [ngClass]="{ 'spinner': isLoading }">
+    <form class="form-horizontal" role="form">
+        <div class="form-group">
+            <div class="col-xs-3">
+                <label for="ex1">Name</label>
+            </div>
+            <div class="col-xs-2">
+                <label for="ex1">Start date</label>
+            </div>
+            <div class="col-xs-2">
+                <label for="ex1">End date</label>
+            </div>
+            <div class="col-xs-1">
+                <label for="ex1">Actions</label>
+            </div>
+        </div>
+    </form>
+
+    <div *ngFor="let moduleConfig of moduleConfigList" class="col-sm-20">
+        <module-config [moduleConfig]="moduleConfig" [actualModuleConfigs]="actualModuleConfigs" 
+                [areAllModulesStopped]="areAllModulesStopped"
+                (operationStarted)="onOperationStarted($event)"
+                (operationCanceled)="onOperationCanceled($event)"
+                (operationFault)="onOperationFault($event)"
+                (modifyModuleConfig)="onModuleConfigModified($event)" ></module-config>
+    </div>
+
+    <div>
+        <div #addModuleTarget></div>
+    </div>
+    <div class="col-sm-1">
+        <input type="button" value="Add" class="form-control" [disabled]="isInAdd || areAllModulesStopped" (click)=" addRow()" />
+    </div>
+</div>

@@ -1,0 +1,125 @@
+<div class="col-md-3 left_col">
+    <div class="left_col scroll-view">
+
+        <div class="navbar nav_title" style="border: 0;">
+            <a href="/" class="site_title">
+                <!--<i class="fa fa-paw"></i>-->
+                <!--<img src="../../content/images/team-international-logo_finals.jpg" alt="Logo" style="width:70px;height:70px;">-->
+                <span>HR Tools</span>
+            </a>
+        </div>
+        
+        <div class="clearfix"></div>
+
+        <!-- menu profile quick info -->
+        <div class="profile">
+            <div class="profile_pic">
+                <img [src]="apiUrl + '/content/images/man_profile.png'" alt="Profile image" class="img-circle profile_img">
+            </div>
+            <div class="profile_info">
+                <span>Welcome,</span>
+                <h2>{{userName}}</h2>
+            </div>
+        </div>
+        <!-- /menu profile quick info -->
+
+        <br />
+
+        <div id="sidebar-menu" class="main_menu_side hidden-print main_menu" style="margin-top:35%" *ngIf="isCoreModuleActive && isUserInRole(['Admin'])">
+            <div class="menu_section">
+                <ul class="nav side-menu">
+                    <li [ngClass]="{'active': isHomeMenuItemActive}">
+                        <a (click)="temp = isHomeMenuItemActive; closeAllMenuItems(); isHomeMenuItemActive=!temp;" >
+                            <i>
+                                <i class="fa fa-home fa-2x" alt="Home"></i>
+                            </i> 
+                            <span>Company</span>
+                            <span class="fa fa-chevron-down"></span>
+                        </a>
+                        <ul class="nav child_menu"
+                            [ngClass]="{'sliderOpened': isHomeMenuItemActive, 'sliderClosed': !isHomeMenuItemActive}">
+
+                            <li><a [routerLink]="['./UserList']">Users</a></li>
+                            <li><a [routerLink]="['./JobTitles']">Job Titles</a></li>
+                            <li><a [routerLink]="['./Technologies']">Technologies</a></li>
+                        </ul>
+                    </li>
+                    <li [ngClass]="{'active': isHRMenuItemActive}">
+                        <a (click)="temp = isHRMenuItemActive; closeAllMenuItems(); isHRMenuItemActive=!temp;">
+                            <i>
+                                <i class="fa fa-user fa-2x" alt="HR" ></i>
+                            </i> 
+                            <span>HR</span>
+                            <span class="fa fa-chevron-down"></span>
+                        </a>
+                        <ul class="nav child_menu"
+                            [ngClass]="{'sliderOpened': isHRMenuItemActive, 'sliderClosed': !isHRMenuItemActive}">
+
+                            <li><a [routerLink]="['./EmployeeList']">Employees</a></li>
+                        </ul>
+                    </li>
+                    <li *ngIf="isPAModuleActive" [ngClass]="{'active': isProjectAssignmentMenuItemActive}">
+                        <a (click)="temp = isProjectAssignmentMenuItemActive; closeAllMenuItems(); isProjectAssignmentMenuItemActive=!temp;" >
+                            <i>
+                                <i class="fa fa-list-alt fa-2x" alt="Projects"></i>
+                            </i> 
+                            <span>Projects</span>
+                            <span class="fa fa-chevron-down"></span>
+                        </a>
+                        <ul class="nav child_menu"
+                            [ngClass]="{'sliderOpened': isProjectAssignmentMenuItemActive, 'sliderClosed': !isProjectAssignmentMenuItemActive}">
+                            
+                            <li><a [routerLink]="['./Projects']">Projects</a></li>
+                            <li><a [routerLink]="['./Departments']">Departments</a></li>
+                        </ul>
+                    </li>
+                    <li [ngClass]="{'active': isATSMenuItemActive}" *ngIf="isATSModuleActive">
+                         <!--&& isUserInRole(['Recruiter'])">-->
+                        <a (click)="temp = isATSMenuItemActive; closeAllMenuItems(); isATSMenuItemActive=!temp;">
+                            <i>
+                                <i class="fa fa-desktop fa-2x" alt="ATS" ></i>
+                            </i> 
+                            <span>ATS</span>
+                            <span class="fa fa-chevron-down"></span>
+                        </a>
+                    </li>
+                    <li [ngClass]="{'active': isConfigMenuItemActive}">
+                        <a (click)="temp = isConfigMenuItemActive; closeAllMenuItems(); isConfigMenuItemActive=!temp;">
+                            <i>
+                                <i class="fa fa-cog fa-2x" alt="Configuration" ></i>
+                            </i> 
+                            <span>Configuration</span>
+                            <span class="fa fa-chevron-down"></span>
+                        </a>
+                        <ul class="nav child_menu"
+                            [ngClass]="{'sliderOpened': isConfigMenuItemActive, 'sliderClosed': !isConfigMenuItemActive}">
+
+                            <li><a [routerLink]="['./ModulesConfig']">Modules</a></li>
+                            <li *ngIf="isUserInRole(['SuperAdmin'])"><a [routerLink]="['./GlobalModulesConfig']">Global Modules Configuration</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+
+        <!-- /menu footer buttons -->
+        <div class="sidebar-footer hidden-small">
+            <a data-toggle="tooltip" data-placement="top" title="Settings">
+                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+            </a>
+            <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+                <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+            </a>
+            <a data-toggle="tooltip" data-placement="top" title="Lock">
+                <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+            </a>
+            <a data-toggle="tooltip" data-placement="top" title="Logout">
+                <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+            </a>
+        </div>
+        <!-- /menu footer buttons -->
+    </div>
+</div>
+
+<link [href]="secureUrl" rel="stylesheet">

@@ -1,0 +1,31 @@
+<form class="form-horizontal" [formGroup]="departmentForm" role="form">
+    <div class="form-group">
+
+        <div class="col-xs-3">
+            <input type="text" placeholder="Enter a department name" [(ngModel)]="currentDepartment.name" name="name" class="form-control"
+                [formControl]="departmentForm.controls['name']" maxlength="255" />
+            <div *ngIf="departmentForm.controls['name'].hasError('required') && !departmentForm.controls['name'].pristine" class="alert alert-danger">Department Name is required.</div>
+        </div>
+
+        <div class="col-xs-6">
+            <textarea [formControl]="departmentForm.controls['description']" type="text" id="nodescriptiontes" name="description" [(ngModel)]="currentDepartment.description"
+                maxlength="1000" class="form-control" rows="4" placeholder="Enter a description"></textarea>
+        </div>
+
+        <div class="col-xs-1" *ngIf="isInEdit || isInAdd">
+            <input type="button" (click)="save()" [disabled]="!departmentForm.valid" value="Save" class="form-control" />
+        </div>
+        <div class="col-xs-1" *ngIf="isInEdit || isInAdd">
+            <input type="button" (click)="cancel()" value="Cancel" class="form-control" />
+        </div>
+        <div class="col-xs-1" *ngIf="!isInEdit && !isInAdd">
+            <input type="button" (click)="edit()" value="Edit" class="form-control" />
+        </div>
+
+        <div class="col-xs-1" *ngIf="!isInEdit && !isInAdd">
+            <input type="button" (click)="delete()" value="Delete" class="form-control" />
+        </div>
+    </div>
+</form>
+
+<delete-confirm message="" (canBeDeleted)="onDelete($event);"></delete-confirm>

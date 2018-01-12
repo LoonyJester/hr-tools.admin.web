@@ -1,0 +1,351 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+        <SchemaVersion>2.0</SchemaVersion>
+        <ProjectGuid>{9e281d8b-cc30-46ab-9331-bfefa5b931f1}</ProjectGuid>
+        <ProjectHome />
+        <ProjectView>ShowAllFiles</ProjectView>
+        <StartupFile>ai.0.22.9-build00167.js</StartupFile>
+        <WorkingDirectory>.</WorkingDirectory>
+        <OutputPath>.</OutputPath>
+        <ProjectTypeGuids>{3AF33F2E-1136-4D97-BBB7-1795711AC8B8};{349c5851-65df-11da-9384-00065b846f21};{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}</ProjectTypeGuids>
+        <TypeScriptSourceMap>true</TypeScriptSourceMap>
+        <TypeScriptModuleKind>CommonJS</TypeScriptModuleKind>
+        <EnableTypeScript>true</EnableTypeScript>
+        <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+        <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
+    <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
+    <ItemGroup>
+        <Content Include="1package.json" />
+        <Content Include="package-lock.json" />
+        <Content Include="package.json" />
+        <Content Include="tsconfig.json" />
+        <Content Include="tslint.json" />
+        <Content Include="typedoc.json" />
+        <Content Include="README.md" />
+        <Compile Include="ai.0.22.9-build00167.js" />
+        <Compile Include="ai.0.22.9-build00167.min.js" />
+        <Compile Include="karma.conf.js" />
+        <Compile Include="protractor.conf.js" />
+        <Compile Include="webpack.config.js" />
+        <Compile Include="config\empty.js" />
+        <Compile Include="config\head-config.common.js" />
+        <Compile Include="config\helpers.js" />
+        <Compile Include="config\karma.conf.js" />
+        <Compile Include="config\protractor.conf.js" />
+        <Compile Include="config\spec-bundle.js" />
+        <Compile Include="config\webpack.common.js" />
+        <Compile Include="config\webpack.dev.js" />
+        <Compile Include="config\webpack.github-deploy.js" />
+        <Compile Include="config\webpack.prod.js" />
+        <Compile Include="config\webpack.test.js" />
+        <Content Include="dist\webpack-assets.json" />
+        <Content Include="src\index.html" />
+        <Content Include="src\favicon-ico.png" />
+        <TypeScriptCompile Include="src\custom-typings.d.ts" />
+        <TypeScriptCompile Include="src\main.browser.ts" />
+        <TypeScriptCompile Include="src\polyfills.browser.ts" />
+        <TypeScriptCompile Include="src\vendor.browser.ts" />
+        <Compile Include="config\github-deploy\index.js" />
+        <Compile Include="config\html-elements-plugin\index.js" />
+        <Compile Include="config\modules\angular2-hmr-prod.js" />
+        <Content Include="content\images\man_profile.png" />
+        <Content Include="content\images\team-international-logo_finals.jpg" />
+        <Content Include="src\app\app.template.html" />
+        <Content Include="src\app\app.company.style.css" />
+        <Content Include="src\app\app.style.css" />
+        <Content Include="src\app\app.teaminternational.style.css" />
+        <Content Include="src\app\index.css" />
+        <TypeScriptCompile Include="src\app\app.component.ts" />
+        <TypeScriptCompile Include="src\app\app.e2e.ts" />
+        <TypeScriptCompile Include="src\app\app.module.ts" />
+        <TypeScriptCompile Include="src\app\app.resolver.ts" />
+        <TypeScriptCompile Include="src\app\app.routes.ts" />
+        <TypeScriptCompile Include="src\app\app.service.ts" />
+        <TypeScriptCompile Include="src\app\app.spec.ts" />
+        <TypeScriptCompile Include="src\app\environment.ts" />
+        <TypeScriptCompile Include="src\app\index.ts" />
+        <Content Include="src\assets\humans.txt" />
+        <Content Include="src\assets\robots.txt" />
+        <Content Include="src\assets\data.json" />
+        <Content Include="src\assets\manifest.json" />
+        <Compile Include="src\assets\service-worker.js" />
+        <Content Include="src\meta\humans.txt" />
+        <Content Include="src\meta\robots.txt" />
+        <TypeScriptCompile Include="src\platform\browser-directives.ts" />
+        <TypeScriptCompile Include="src\platform\browser-pipes.ts" />
+        <TypeScriptCompile Include="src\platform\browser-providers.ts" />
+        <TypeScriptCompile Include="src\platform\browser.ts" />
+        <TypeScriptCompile Include="src\platform\environment.ts" />
+        <TypeScriptCompile Include="src\app\core\core.module.ts" />
+        <TypeScriptCompile Include="src\app\layout\layout.module.ts" />
+        <TypeScriptCompile Include="src\app\project assignment\project-assignment.module.ts" />
+        <TypeScriptCompile Include="src\app\common\alerts\alertType.ts" />
+        <TypeScriptCompile Include="src\app\common\authorization\auth.module.ts" />
+        <TypeScriptCompile Include="src\app\common\authorization\role.ts" />
+        <TypeScriptCompile Include="src\app\common\authorization\user.ts" />
+        <TypeScriptCompile Include="src\app\common\company\companyHelper.ts" />
+        <TypeScriptCompile Include="src\app\common\company\moduleName.ts" />
+        <TypeScriptCompile Include="src\app\common\company\urlHelper.ts" />
+        <TypeScriptCompile Include="src\app\common\files\ImageResizer.ts" />
+        <Content Include="src\app\common\grid\grid.template.html" />
+        <Content Include="src\app\common\grid\grid.css" />
+        <TypeScriptCompile Include="src\app\common\grid\grid.component.ts" />
+        <TypeScriptCompile Include="src\app\common\grid\grid.module.ts" />
+        <TypeScriptCompile Include="src\app\common\grid\gridSettings.ts" />
+        <TypeScriptCompile Include="src\app\common\grid\sorter.ts" />
+        <TypeScriptCompile Include="src\app\common\guards\isUserHasAdminRoleGuard.ts" />
+        <TypeScriptCompile Include="src\app\common\multiselect-dropdown\multiselect-dropdown.ts" />
+        <TypeScriptCompile Include="src\app\common\paging\paging.settings.ts" />
+        <Content Include="src\app\common\authorization\login\login.template.html" />
+        <Content Include="src\app\common\authorization\login\login.style.css" />
+        <TypeScriptCompile Include="src\app\common\authorization\login\login.component.ts" />
+        <TypeScriptCompile Include="src\app\common\authorization\login\userLoginData.ts" />
+        <TypeScriptCompile Include="src\app\common\authorization\services\auth.service.ts" />
+        <TypeScriptCompile Include="src\app\common\authorization\services\user.service.ts" />
+        <TypeScriptCompile Include="src\app\common\company\services\configuration.service.ts" />
+        <Content Include="src\app\common\modals\delete confirmation\delete-confirm.template.html" />
+        <TypeScriptCompile Include="src\app\common\modals\delete confirmation\delete-confirmation.component.ts" />
+        <TypeScriptCompile Include="src\app\common\modals\delete confirmation\delete-confirmation.module.ts" />
+        <TypeScriptCompile Include="src\app\core\common\gridData.ts" />
+        <TypeScriptCompile Include="src\app\core\common\status.enum.ts" />
+        <TypeScriptCompile Include="src\app\core\common\technology.enum.ts" />
+        <TypeScriptCompile Include="src\app\core\company\officeLocation.ts" />
+        <Content Include="src\app\core\employee\employee-list.template.html" />
+        <TypeScriptCompile Include="src\app\core\employee\employee-list.component.ts" />
+        <TypeScriptCompile Include="src\app\core\employee\employee.module.ts" />
+        <TypeScriptCompile Include="src\app\core\employee\employee.ts" />
+        <TypeScriptCompile Include="src\app\core\employee\employeeGridItem.ts" />
+        <TypeScriptCompile Include="src\app\core\employee\employeeGridSettings.ts" />
+        <TypeScriptCompile Include="src\app\core\employee\employeesFilter.ts" />
+        <Content Include="src\app\core\job title\job-title-list.template.html" />
+        <Content Include="src\app\core\job title\job-title.template.html" />
+        <TypeScriptCompile Include="src\app\core\job title\job-title-list.component.ts" />
+        <TypeScriptCompile Include="src\app\core\job title\job-title.component.ts" />
+        <TypeScriptCompile Include="src\app\core\job title\job-title.ts" />
+        <TypeScriptCompile Include="src\app\core\job title\jobTitle.module.ts" />
+        <Content Include="src\app\core\modules configuration\module-config.template.html" />
+        <Content Include="src\app\core\modules configuration\modules-config-list.template.html" />
+        <Content Include="src\app\core\modules configuration\module-config.style.css" />
+        <TypeScriptCompile Include="src\app\core\modules configuration\configuration.module.ts" />
+        <TypeScriptCompile Include="src\app\core\modules configuration\module-config.component.ts" />
+        <TypeScriptCompile Include="src\app\core\modules configuration\module-config.ts" />
+        <TypeScriptCompile Include="src\app\core\modules configuration\modules-config-list.component.ts" />
+        <Content Include="src\app\core\technology\technology-list.template.html" />
+        <Content Include="src\app\core\technology\technology.template.html" />
+        <TypeScriptCompile Include="src\app\core\technology\technology-list.component.ts" />
+        <TypeScriptCompile Include="src\app\core\technology\technology.component.ts" />
+        <TypeScriptCompile Include="src\app\core\technology\technology.module.ts" />
+        <TypeScriptCompile Include="src\app\core\technology\technology.ts" />
+        <Content Include="src\app\core\user\user-list.template.html" />
+        <Content Include="src\app\core\user\user.template.html" />
+        <Content Include="src\app\core\user\user-list.style.css" />
+        <Content Include="src\app\core\user\user.style.css" />
+        <TypeScriptCompile Include="src\app\core\user\user-list.component.ts" />
+        <TypeScriptCompile Include="src\app\core\user\user.component.ts" />
+        <TypeScriptCompile Include="src\app\core\user\user.module.ts" />
+        <TypeScriptCompile Include="src\app\core\user\user.ts" />
+        <TypeScriptCompile Include="src\app\core\user\userFilter.ts" />
+        <TypeScriptCompile Include="src\app\core\user\userTableSettings.ts" />
+        <TypeScriptCompile Include="src\app\core\employee\services\employee.service.ts" />
+        <Content Include="src\app\core\employee\modals\addEdit\addEditEmployeeModal.template.html" />
+        <Content Include="src\app\core\employee\modals\addEdit\addEditEmployeeModal.style.css" />
+        <TypeScriptCompile Include="src\app\core\employee\modals\addEdit\addEditEmployeeModal.component.ts" />
+        <TypeScriptCompile Include="src\app\core\job title\services\job-title.service.ts" />
+        <Content Include="src\app\core\modules configuration\global modules configuration\global-modules-config-list.template.html" />
+        <TypeScriptCompile Include="src\app\core\modules configuration\global modules configuration\global-modules-config-list.component.ts" />
+        <Content Include="src\app\core\modules configuration\modals\stop-module-confirmation.template.html" />
+        <TypeScriptCompile Include="src\app\core\modules configuration\modals\stop-module-confirmation.component.ts" />
+        <TypeScriptCompile Include="src\app\core\modules configuration\modals\stop-module-confirmation.module.ts" />
+        <TypeScriptCompile Include="src\app\core\modules configuration\services\module-config.service.ts" />
+        <TypeScriptCompile Include="src\app\core\technology\services\technology.service.ts" />
+        <TypeScriptCompile Include="src\app\core\user\enums\userActivationStatus.ts" />
+        <TypeScriptCompile Include="src\app\core\user\services\user.service.ts" />
+        <Content Include="src\app\layout\footer\footer.html" />
+        <Content Include="src\app\layout\footer\footer.company.style.css" />
+        <Content Include="src\app\layout\footer\footer.style.css" />
+        <Content Include="src\app\layout\footer\footer.teaminternational.style.css" />
+        <TypeScriptCompile Include="src\app\layout\footer\footer.component.ts" />
+        <TypeScriptCompile Include="src\app\layout\footer\footer.module.ts" />
+        <Content Include="src\app\layout\landing page\landing-page.template.html" />
+        <TypeScriptCompile Include="src\app\layout\landing page\landing-page.component.ts" />
+        <TypeScriptCompile Include="src\app\layout\no-content\no-content.component.ts" />
+        <Content Include="src\app\layout\side-menu\side-menu.template.html" />
+        <Content Include="src\app\layout\side-menu\side-menu.company.style.css" />
+        <Content Include="src\app\layout\side-menu\side-menu.style.css" />
+        <Content Include="src\app\layout\side-menu\side-menu.teaminternational.style.css" />
+        <TypeScriptCompile Include="src\app\layout\side-menu\side-menu.component.ts" />
+        <TypeScriptCompile Include="src\app\layout\side-menu\side-menu.module.ts" />
+        <Content Include="src\app\layout\top navigation menu\top_nav_menu.template.html" />
+        <Content Include="src\app\layout\top navigation menu\top_nav_menu.company.style.css" />
+        <Content Include="src\app\layout\top navigation menu\top_nav_menu.style.css" />
+        <Content Include="src\app\layout\top navigation menu\top_nav_menu.teaminternational.style.css" />
+        <TypeScriptCompile Include="src\app\layout\top navigation menu\top_nav_menu.component.ts" />
+        <TypeScriptCompile Include="src\app\layout\top navigation menu\top_nav_menu.module.ts" />
+        <Content Include="src\app\layout\top navigation menu\login area\login-area.template.html" />
+        <TypeScriptCompile Include="src\app\layout\top navigation menu\login area\login-area.component.ts" />
+        <TypeScriptCompile Include="src\app\project assignment\common\department.ts" />
+        <TypeScriptCompile Include="src\app\project assignment\common\gridData.ts" />
+        <TypeScriptCompile Include="src\app\project assignment\common\project.ts" />
+        <Content Include="src\app\project assignment\department\department-list.template.html" />
+        <Content Include="src\app\project assignment\department\department.template.html" />
+        <Content Include="src\app\project assignment\department\department.style.css" />
+        <TypeScriptCompile Include="src\app\project assignment\department\department-grid-item.ts" />
+        <TypeScriptCompile Include="src\app\project assignment\department\department-list.component.ts" />
+        <TypeScriptCompile Include="src\app\project assignment\department\department-table-settings.ts" />
+        <TypeScriptCompile Include="src\app\project assignment\department\department.component.ts" />
+        <TypeScriptCompile Include="src\app\project assignment\department\department.module.ts" />
+        <Content Include="src\app\project assignment\project\project-list.template.html" />
+        <TypeScriptCompile Include="src\app\project assignment\project\project-grid-item.ts" />
+        <TypeScriptCompile Include="src\app\project assignment\project\project-grid-settings.ts" />
+        <TypeScriptCompile Include="src\app\project assignment\project\project-list.component.ts" />
+        <TypeScriptCompile Include="src\app\project assignment\project\project.module.ts" />
+        <TypeScriptCompile Include="src\app\project assignment\department\services\department.service.ts" />
+        <TypeScriptCompile Include="src\app\project assignment\project\services\project.service.ts" />
+        <Content Include="src\app\project assignment\project\modals\addEdit\addEditProjectModal.template.html" />
+        <Content Include="src\app\project assignment\project\modals\addEdit\addEditProjectModal.style.css" />
+        <TypeScriptCompile Include="src\app\project assignment\project\modals\addEdit\addEditProjectModal.component.ts" />
+        <Content Include="src\assets\css\font-awesome.min.css" />
+        <Content Include="src\assets\css\ng2-select.css" />
+        <Content Include="src\assets\icon\android-icon-144x144.png" />
+        <Content Include="src\assets\icon\android-icon-192x192.png" />
+        <Content Include="src\assets\icon\android-icon-36x36.png" />
+        <Content Include="src\assets\icon\android-icon-48x48.png" />
+        <Content Include="src\assets\icon\android-icon-72x72.png" />
+        <Content Include="src\assets\icon\android-icon-96x96.png" />
+        <Content Include="src\assets\icon\apple-icon-114x114.png" />
+        <Content Include="src\assets\icon\apple-icon-120x120.png" />
+        <Content Include="src\assets\icon\apple-icon-144x144.png" />
+        <Content Include="src\assets\icon\apple-icon-152x152.png" />
+        <Content Include="src\assets\icon\apple-icon-180x180.png" />
+        <Content Include="src\assets\icon\apple-icon-57x57.png" />
+        <Content Include="src\assets\icon\apple-icon-60x60.png" />
+        <Content Include="src\assets\icon\apple-icon-72x72.png" />
+        <Content Include="src\assets\icon\apple-icon-76x76.png" />
+        <Content Include="src\assets\icon\apple-icon-precomposed.png" />
+        <Content Include="src\assets\icon\apple-icon.png" />
+        <Content Include="src\assets\icon\favicon-16x16.png" />
+        <Content Include="src\assets\icon\favicon-32x32.png" />
+        <Content Include="src\assets\icon\favicon-96x96.png" />
+        <Content Include="src\assets\icon\ms-icon-144x144.png" />
+        <Content Include="src\assets\icon\ms-icon-150x150.png" />
+        <Content Include="src\assets\icon\ms-icon-310x310.png" />
+        <Content Include="src\assets\icon\ms-icon-70x70.png" />
+        <Content Include="src\assets\icon\favicon.ico" />
+        <Content Include="src\assets\icon\browserconfig.xml" />
+        <Content Include="src\assets\img\angular-logo.png" />
+        <Content Include="src\assets\img\angularclass-avatar.png" />
+        <Content Include="src\assets\img\angularclass-logo.png" />
+        <Content Include="src\assets\mock-data\mock-data.json" />
+    </ItemGroup>
+    <ItemGroup>
+        <Folder Include="config" />
+        <Folder Include="config\github-deploy" />
+        <Folder Include="config\html-elements-plugin" />
+        <Folder Include="config\modules" />
+        <Folder Include="content" />
+        <Folder Include="content\images" />
+        <Folder Include="dist" />
+        <Folder Include="src" />
+        <Folder Include="src\app" />
+        <Folder Include="src\app\common" />
+        <Folder Include="src\app\common\alerts" />
+        <Folder Include="src\app\common\authorization" />
+        <Folder Include="src\app\common\authorization\login" />
+        <Folder Include="src\app\common\authorization\services" />
+        <Folder Include="src\app\common\company" />
+        <Folder Include="src\app\common\company\services" />
+        <Folder Include="src\app\common\files" />
+        <Folder Include="src\app\common\grid" />
+        <Folder Include="src\app\common\guards" />
+        <Folder Include="src\app\common\modals" />
+        <Folder Include="src\app\common\modals\delete confirmation" />
+        <Folder Include="src\app\common\multiselect-dropdown" />
+        <Folder Include="src\app\common\paging" />
+        <Folder Include="src\app\core" />
+        <Folder Include="src\app\core\common" />
+        <Folder Include="src\app\core\company" />
+        <Folder Include="src\app\core\employee" />
+        <Folder Include="src\app\core\employee\modals" />
+        <Folder Include="src\app\core\employee\modals\addEdit" />
+        <Folder Include="src\app\core\employee\services" />
+        <Folder Include="src\app\core\job title" />
+        <Folder Include="src\app\core\job title\services" />
+        <Folder Include="src\app\core\modules configuration" />
+        <Folder Include="src\app\core\modules configuration\global modules configuration" />
+        <Folder Include="src\app\core\modules configuration\modals" />
+        <Folder Include="src\app\core\modules configuration\services" />
+        <Folder Include="src\app\core\technology" />
+        <Folder Include="src\app\core\technology\services" />
+        <Folder Include="src\app\core\user" />
+        <Folder Include="src\app\core\user\enums" />
+        <Folder Include="src\app\core\user\services" />
+        <Folder Include="src\app\layout" />
+        <Folder Include="src\app\layout\footer" />
+        <Folder Include="src\app\layout\landing page" />
+        <Folder Include="src\app\layout\no-content" />
+        <Folder Include="src\app\layout\side-menu" />
+        <Folder Include="src\app\layout\top navigation menu" />
+        <Folder Include="src\app\layout\top navigation menu\login area" />
+        <Folder Include="src\app\project assignment" />
+        <Folder Include="src\app\project assignment\common" />
+        <Folder Include="src\app\project assignment\department" />
+        <Folder Include="src\app\project assignment\department\services" />
+        <Folder Include="src\app\project assignment\project" />
+        <Folder Include="src\app\project assignment\project\modals" />
+        <Folder Include="src\app\project assignment\project\modals\addEdit" />
+        <Folder Include="src\app\project assignment\project\services" />
+        <Folder Include="src\assets" />
+        <Folder Include="src\assets\css" />
+        <Folder Include="src\assets\icon" />
+        <Folder Include="src\assets\img" />
+        <Folder Include="src\assets\mock-data" />
+        <Folder Include="src\meta" />
+        <Folder Include="src\platform" />
+    </ItemGroup>
+    <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+    <!--Do not delete the following Import Project.  While this appears to do nothing it is a marker for setting TypeScript properties before our import that depends on them.-->
+    <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="False" />
+    <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsTools.targets" />
+    <ProjectExtensions>
+        <VisualStudio>
+          <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+            <WebProjectProperties>
+              <UseIIS>False</UseIIS>
+              <AutoAssignPort>True</AutoAssignPort>
+              <DevelopmentServerPort>0</DevelopmentServerPort>
+              <DevelopmentServerVPath>/</DevelopmentServerVPath>
+              <IISUrl>http://localhost:48022/</IISUrl>
+              <NTLMAuthentication>False</NTLMAuthentication>
+              <UseCustomServer>True</UseCustomServer>
+              <CustomServerUrl>http://localhost:1337</CustomServerUrl>
+              <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+            </WebProjectProperties>
+          </FlavorProperties>
+          <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}" User="">
+            <WebProjectProperties>
+              <StartPageUrl>
+              </StartPageUrl>
+              <StartAction>CurrentPage</StartAction>
+              <AspNetDebugging>True</AspNetDebugging>
+              <SilverlightDebugging>False</SilverlightDebugging>
+              <NativeDebugging>False</NativeDebugging>
+              <SQLDebugging>False</SQLDebugging>
+              <ExternalProgram>
+              </ExternalProgram>
+              <StartExternalURL>
+              </StartExternalURL>
+              <StartCmdLineArguments>
+              </StartCmdLineArguments>
+              <StartWorkingDirectory>
+              </StartWorkingDirectory>
+              <EnableENC>False</EnableENC>
+              <AlwaysStartWebServerOnDebug>False</AlwaysStartWebServerOnDebug>
+            </WebProjectProperties>
+          </FlavorProperties>
+        </VisualStudio>
+    </ProjectExtensions>
+</Project>

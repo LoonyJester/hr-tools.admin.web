@@ -1,0 +1,98 @@
+<div bsModal #addModal="bs-modal"  class="modal fade" tabindex="-1" role="dialog"  [config]="{backdrop: 'static'}"
+     aria-hidden="true">
+    <div class="modal-dialog modal-med">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" aria-label="Close" (click)="addEditForm.reset(); addModal.hide();">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">{{actionName}} Project</h4>
+            </div>
+            
+            <div class="modal-body">
+                <form [formGroup]="addEditForm"  class="form-horizontal">
+                    <div class="form-group">
+                        <label for="name" class="control-label col-sm-3">Project Name:</label>
+                        <div class="col-sm-9">
+                            <input type="text" [formControl]="addEditForm.controls['name']" id="name" 
+                                maxlength="250" class="form-control required" [(ngModel)]="project.name"
+                                placeholder="Enter a project name">
+                            <div *ngIf="addEditForm.controls['name'].hasError('required') && !addEditForm.controls['name'].pristine" 
+                                class="alert alert-danger">Project Name is required.</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description" class="control-label col-sm-3">Description:</label>
+                        <div class="col-sm-9">
+                            <input type="text" [formControl]="addEditForm.controls['description']" id="description" 
+                                maxlength="250" class="form-control" [(ngModel)]="project.description"
+                                placeholder="Enter a project description">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="startDate" class="control-label col-sm-3">Start date:</label>
+                        <div class="col-sm-7">                                
+                            <div class="datePickerInput">
+                                <input [(ngModel)]="project.startDate"
+                                        type="text" id="startDate" [value]="project.startDate | date"
+                                        maxlength="100" class="form-control"
+                                        [ngClass]="{'ng-valid-message': project.startDate, 'ng-invalid-message': !project.startDate}"
+                                        readonly='true' [formControl]="addEditForm.controls['startDate']">
+                            </div>
+                                  
+
+                             <div *ngIf="isStartDatePickerOpened" class="datePicker" style="position: absolute; z-index:1;">
+                                <datepicker
+                                    [(ngModel)]="project.startDate"
+                                    [minDate]="datePickersValidationRules.startDate.minDate"
+                                    [maxDate]="datePickersValidationRules.startDate.maxDate"
+                                    [showWeeks]="true" id="startDatePicker"                                     
+                                    (mouseleave)="openStartDatePicker()"
+                                    [ngModelOptions]="{standalone: true}"></datepicker>
+                            </div>
+                        </div>
+                        <div class="col-sm-1">
+                            <i class="fa fa-calendar"  aria-hidden="true"
+                                    (click)="openStartDatePicker()" ></i>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="endDate" class="control-label col-sm-3">End date:</label>
+                        <div class="col-sm-7">                                
+                            <div class="datePickerInput">
+                                <input [(ngModel)]="project.endDate"
+                                        type="text" id="endDate" [value]="project.endDate | date"
+                                        maxlength="100" class="form-control"
+                                        readonly='true' [formControl]="addEditForm.controls['endDate']">
+                            </div>
+
+                             <div *ngIf="isEndDatePickerOpened" class="datePicker" style="position: absolute; z-index:1;">
+                                <datepicker
+                                    [(ngModel)]="project.endDate"
+                                    [minDate]="datePickersValidationRules.endDate.minDate"
+                                    [maxDate]="datePickersValidationRules.endDate.maxDate"
+                                    [showWeeks]="true" id="endDatePicker"                                     
+                                    (mouseleave)="openEndDatePicker()"
+                                    [ngModelOptions]="{standalone: true}"></datepicker>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <i class="fa fa-calendar"  aria-hidden="true"
+                                (click)="openEndDatePicker(endDatePicker)" ></i>
+
+                            <i class="fa fa-times" aria-hidden="true"
+                                (click)="clearEndDatePicker(endDatePicker)" ></i>
+                        </div>
+                    </div>
+
+                    <div>
+                        <button class="btn btn-sm btn-default" (click)="save(addEditForm)" type="submit" [disabled]="!addEditForm.valid || !project.startDate">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

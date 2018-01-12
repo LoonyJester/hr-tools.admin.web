@@ -1,0 +1,9 @@
+<div class="table-responsive">
+    <ng-table [config]="{className: ['table-striped']}" (tableChanged)="onChangeTable()" (cellClicked)="onCellClicked($event)"
+        [rows]="rows" [columns]="columns">
+        </ng-table>
+        <div>
+            <pagination style="margin-top: 10px;" [totalItems]="settings.totalCount" [itemsPerPage]="settings.itemsPerPage" [(ngModel)]="settings.currentPage"
+                (pageChanged)="onChangeTable($event)"></pagination>
+        </div>
+</div>

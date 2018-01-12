@@ -1,0 +1,21 @@
+.col-xs-1{
+    min-width: 160px;
+}
+
+.col-xs-2{
+    min-width: 160px;
+}
+
+.col-xs-05{
+    float: left;
+    width: 4%;
+}
+
+label{
+    color: black;
+    font: inherit;
+}
+
+.left10{
+    padding-left: 10px;
+}
